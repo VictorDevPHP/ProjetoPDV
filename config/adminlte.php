@@ -64,7 +64,7 @@ return [
     */
 
     'logo' => '<b>Painel de Vendas</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/tech1.png',
+    'logo_img' => 'vendor/adminlte/dist/img/carrinho.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -86,7 +86,7 @@ return [
     'auth_logo' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/tech1.png',
+            'path' => 'vendor/adminlte/dist/img/carrinho.png',
             'alt' => 'Auth Logo',
             'class' => '',
             'width' => 50,
@@ -109,7 +109,7 @@ return [
     'preloader' => [
         'enabled' => true,
         'img' => [
-            'path' => 'vendor/adminlte/dist/img/tech1.png',
+            'path' => 'vendor/adminlte/dist/img/carrinho.png',
             'alt' => 'AdminLTE Preloader Image',
             'effect' => 'animation__shake',
             'width' => 60,
@@ -313,10 +313,11 @@ return [
         ],
         
         [
-            'text'        => 'pages',
+            'text'        => 'Abertura',
             'url'         => 'pages',
             'icon'        => 'far fa-fw fa-file',
             'label_color' => 'success',
+            'can'         => 'gerente',  
         ],
 
         ['header' => 'account_settings'],
