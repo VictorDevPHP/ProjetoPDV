@@ -1,3 +1,3 @@
 <div>
-    @livewire('nav.teste')
+    @livewire('components.cadastro-produto')
 </div>
