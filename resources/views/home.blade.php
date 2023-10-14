@@ -1,4 +1,4 @@
-@extends('layouts.app', ['iFrameEnabled' => true])
+@extends('layouts.app')
 
 
 @section('title', 'Dashboard')

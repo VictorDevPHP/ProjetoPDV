@@ -7,7 +7,7 @@
     <title>Aplicação</title>
 </head>
 <body>
-    @extends('adminlte::page')
+    @extends('adminlte::page', ['iFrameEnabled' => true])
     
 </body>
 </html>
