@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Components\FormProduto;
+use App\Http\Livewire\Estoque;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,11 +27,15 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/livewire/pdv', function () {
         return view('livewire.pdv');
     });
+    // Route form cadastro-produtos
     Route::get('/livewire/components/form-produto', function () {
         return view('livewire.components.form-produto');
     })->name('form-produto');
-    
     Route::post('/livewire/components/form-produto', [FormProduto::class, 'formProduto'])->name('formPost');
+    
+    // Route estoque
+    Route::get('/livewire/estoque', [Estoque::class, 'render',])->name('estoque');
+    
 });
 
 Auth::routes();

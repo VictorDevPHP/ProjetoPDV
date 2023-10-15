@@ -315,14 +315,22 @@ return [
         [
             'text'        => 'Abertura',
             'url'         => 'pages',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-file-invoice-dollar',
+            'label_color' => 'success',
+            'can'         => 'gerente',  
+        ],
+                
+        [
+            'text'        => 'Estoque',
+            'url'         => 'livewire/estoque',
+            'icon'        => 'fas fa-box-open',
             'label_color' => 'success',
             'can'         => 'gerente',  
         ],
         [
             'text'        => 'PDV',
             'url'         => 'livewire/pdv',
-            'icon'        => 'far fa-fw fa-file',
+            'icon'        => 'fas fa-store-alt',
             'label_color' => 'success',
             'can'         => 'gerente',  
         ],
