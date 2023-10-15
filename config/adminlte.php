@@ -319,6 +319,13 @@ return [
             'label_color' => 'success',
             'can'         => 'gerente',  
         ],
+        [
+            'text'        => 'PDV',
+            'url'         => 'livewire/pdv',
+            'icon'        => 'far fa-fw fa-file',
+            'label_color' => 'success',
+            'can'         => 'gerente',  
+        ],
 
         ['header' => 'account_settings'],
 

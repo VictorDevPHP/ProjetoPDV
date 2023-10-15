@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Livewire\Components\FormProduto;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +18,21 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/pages', function () {
-    return view('pages');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/pages', function () {
+        return view('pages');
+    });
+    
+    Route::get('/livewire/pdv', function () {
+        return view('livewire.pdv');
+    });
+    Route::get('/livewire/components/form-produto', function () {
+        return view('livewire.components.form-produto');
+    })->name('form-produto');
+    
+    Route::post('/livewire/components/form-produto', [FormProduto::class, 'formProduto'])->name('formPost');
 });
 
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
-
-
