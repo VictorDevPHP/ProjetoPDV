@@ -14,6 +14,7 @@
                 <th>Preço</th>
                 <th>Quantidade</th>
                 <th>Marca</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -24,6 +25,10 @@
                         <td>{{ $produto->preco }}</td>
                         <td>{{ $produto->quantidade }}</td>
                         <td>{{ $produto->marca }}</td>
+                        <td>
+                            <button wire:click="editProduto({{ $produto->id }})" class="fas fa-edit">Editar</button>
+                            <button>Excluir</button>
+                        </td>
                     </tr>
                 @endforeach
             @else
@@ -33,6 +38,4 @@
             @endif
         </tbody>
     </table>
-</div>
-
 </div>
