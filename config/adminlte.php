@@ -512,8 +512,8 @@ return [
 
     'iframe' => [
         'default_tab' => [
-            'url' => null,
-            'title' => null,
+            'url' => 'pages',
+            'title' => 'Abertura',
         ],
         'buttons' => [
             'close' => true,
