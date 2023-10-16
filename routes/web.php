@@ -32,10 +32,11 @@ Route::middleware(['auth'])->group(function () {
         return view('livewire.components.form-produto');
     })->name('form-produto');
     Route::post('/livewire/components/form-produto', [FormProduto::class, 'formProduto'])->name('formPost');
+    Route::get('/livewire/components/form-produto/editar/{id}', [FormProduto::class, 'editar'])->name('formEditar');
+    Route::post('/livewire/components/form-produto/editar/{id}', [FormProduto::class, 'update'])->name('postUpdate');
     
     // Route estoque
     Route::get('/livewire/estoque', [Estoque::class, 'render',])->name('estoque');
-    
 });
 
 Auth::routes();

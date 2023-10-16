@@ -12,9 +12,4 @@ class Estoque extends Component
         $produtos = Produto::all();
         return view('livewire.estoque', compact('produtos'))->extends('layouts.app');
     }
-
-    public function editProduto($produtoId)
-    {
-        
-    }
 }

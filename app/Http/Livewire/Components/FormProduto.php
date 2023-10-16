@@ -11,7 +11,8 @@ class FormProduto extends Component
 {
     public function render()
     {
-        return view('livewire.components.form-produto');
+        $produto = null;
+        return view('livewire.components.form-produto', compact($produto));
     }
 
     public function formProduto(Request $request){
@@ -22,4 +23,18 @@ class FormProduto extends Component
         return redirect()->route('form-produto');
 
     }
+    public function editar($id){
+        $produto = Produto::find($id);
+        return view('livewire.components.form-produto', ['produto' => $produto]);
+        
+    }
+    public function update(Request $request, $id){
+        $produto = Produto::find($id);
+        $produto->update($request->only(['nome', 'preco', 'marca', 'quantidade']));
+
+        session()->flash('sucesso', 'Produto Editado com sucesso');
+        return redirect()->route('form-produto');
+    }
+
+    
 }
