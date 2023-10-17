@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Components\FormProduto;
 use App\Http\Livewire\Estoque;
+use App\Http\Controllers\Overview;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +37,13 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/livewire/components/form-produto/editar/{id}', [FormProduto::class, 'update'])->name('postUpdate');
     Route::get('/livewire/components/form-produto/deletar/{id}', [FormProduto::class, 'deletar'])->name('deleteProduto');
     
+
     // Route estoque
     Route::get('/livewire/estoque', [Estoque::class, 'render',])->name('estoque');
+
+    // Route Overview 
+    Route::get('/pages', [Overview::class, 'render'])->name('overview');
+
 });
 
 Auth::routes();
