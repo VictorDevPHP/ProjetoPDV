@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Components;
 use App\Models\Produto;
 use Livewire\Component;
 use Illuminate\Http\Request;
-use App\Events\ProdutoCadastrado;
 
 class FormProduto extends Component
 {
@@ -19,7 +18,7 @@ class FormProduto extends Component
         $produto = Produto::create($request->only(['nome', 'preco', 'marca', 'quantidade']));
         $produto->save();
         
-        session()->flash('sucesso', 'Produto cadastrado com sucesso');
+        session()->flash('sucesso', $produto->nome .' cadastrado com sucesso');
         return redirect()->route('form-produto');
 
     }
@@ -32,9 +31,14 @@ class FormProduto extends Component
         $produto = Produto::find($id);
         $produto->update($request->only(['nome', 'preco', 'marca', 'quantidade']));
 
-        session()->flash('sucesso', 'Produto Editado com sucesso');
+        session()->flash('sucesso', $produto->nome .' Editado com sucesso');
         return redirect()->route('form-produto');
     }
+    public function deletar($id){
+        $produto = Produto::find($id);
+        $produto->delete();
 
-    
+        session()->flash('sucesso', $produto->nome .' Produto Deletado com sucesso');
+        return redirect()->route('form-produto');
+    }
 }

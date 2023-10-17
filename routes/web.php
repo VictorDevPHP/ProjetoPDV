@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/livewire/components/form-produto', [FormProduto::class, 'formProduto'])->name('formPost');
     Route::get('/livewire/components/form-produto/editar/{id}', [FormProduto::class, 'editar'])->name('formEditar');
     Route::post('/livewire/components/form-produto/editar/{id}', [FormProduto::class, 'update'])->name('postUpdate');
+    Route::get('/livewire/components/form-produto/deletar/{id}', [FormProduto::class, 'deletar'])->name('deleteProduto');
     
     // Route estoque
     Route::get('/livewire/estoque', [Estoque::class, 'render',])->name('estoque');
