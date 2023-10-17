@@ -38,7 +38,7 @@ class FormProduto extends Component
         $produto = Produto::find($id);
         $produto->delete();
 
-        session()->flash('sucesso', $produto->nome .' Produto Deletado com sucesso');
+        session()->flash('sucesso', $produto->nome .' Deletado com sucesso');
         return redirect()->route('form-produto');
     }
 }
