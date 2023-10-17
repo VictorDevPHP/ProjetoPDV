@@ -26933,7 +26933,7 @@ body.text-sm .input-group-text {
 .card.bg-info .bootstrap-datetimepicker-widget table td.active:hover,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget table td.active,
 .card.bg-gradient-info .bootstrap-datetimepicker-widget table td.active:hover {
-  background-color: #1fc8e3;
+  background-color: #343a40;
   color: #fff;
 }
 

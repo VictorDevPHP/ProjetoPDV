@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Livewire\Pdv;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Components\FormProduto;
 use App\Http\Livewire\Estoque;
@@ -24,10 +25,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/pages', function () {
         return view('pages');
     });
+
+    Route::get('/livewire/pdv', [Pdv::class, 'render'])->name('pdv'); 
     
-    Route::get('/livewire/pdv', function () {
-        return view('livewire.pdv');
-    });
     // Route form cadastro-produtos
     Route::get('/livewire/components/form-produto', function () {
         return view('livewire.components.form-produto');
@@ -37,7 +37,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('/livewire/components/form-produto/editar/{id}', [FormProduto::class, 'update'])->name('postUpdate');
     Route::get('/livewire/components/form-produto/deletar/{id}', [FormProduto::class, 'deletar'])->name('deleteProduto');
     
-
     // Route estoque
     Route::get('/livewire/estoque', [Estoque::class, 'render',])->name('estoque');
 

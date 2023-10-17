@@ -1,10 +1,8 @@
 <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
-<div>
-    <h1 style="text-align: center">Bem vindo(a), {{ ucfirst(auth()->user()->name) }}!</h1>
-</div>
+@livewire('components.profile')
 <div class="row">
-    <div class="col-lg-3 col-6">
+    <div class="col-lg-3 col-6 mx-auto">
         <!-- small card -->
         <div class="small-box bg-info">
             <div class="inner">
@@ -19,7 +17,7 @@
             </a>
         </div>
     </div>
-    <div class="col-lg-3 col-6">
+    <div class="col-lg-3 col-6 mx-auto">
         <!-- small card -->
         <div class="small-box bg-danger">
             <div class="inner">
