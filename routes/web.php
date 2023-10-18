@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Components\FormProduto;
 use App\Http\Livewire\Estoque;
 use App\Http\Controllers\Overview;
+use App\Http\Controllers\Vendas;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +43,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Route Overview 
     Route::get('/pages', [Overview::class, 'render'])->name('overview');
+
+    // Route Venda
+    Route::post('/salvar-venda', [Vendas::class, 'salvarVenda'])->name('venda');
 
 });
 

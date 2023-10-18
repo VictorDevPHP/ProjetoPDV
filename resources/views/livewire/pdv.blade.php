@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,7 +16,9 @@
         }
     </style>
 </head>
+
 <body>
+    @csrf
     <div class="container mt-5">
         <h1 class="text-center">Frente de Caixa</h1>
         <div class="row mt-4">
@@ -26,7 +29,10 @@
                     <select class="form-control" id="selectProduto" data-placeholder="Selecione um produto">
                         <option value="" disabled selected>Selecione um produto</option>
                         @foreach ($produtos as $produto)
-                            <option value="{{$produto->id}}" data-preco="{{$produto->preco}}">{{$produto->nome}}</option>
+                            @if ($produto->quantidade > 0)
+                                <option value="{{ $produto->id }}" data-preco="{{ $produto->preco }}">
+                                    {{ $produto->id }} - {{ $produto->nome }}</option>
+                            @endif
                         @endforeach
                     </select>
                     <button class="btn btn-primary mt-2" id="adicionar-ao-carrinho">Adicionar ao Carrinho</button>
@@ -39,13 +45,15 @@
                 <ul class="list-group" id="carrinho">
                 </ul>
                 <h4 class="mt-3 total">Total: $<span id="total">0.00</span></h4>
-                <button class="btn btn-success mt-3" id="finalizar-compra" data-toggle="modal" data-target="#modal-pagamento">Finalizar Compra</button>
+                <button class="btn btn-success mt-3" id="finalizar-compra" data-toggle="modal"
+                    data-target="#modal-pagamento">Finalizar Compra</button>
             </div>
         </div>
     </div>
-    
+
     <!-- Modal de Pagamento -->
-    <div class="modal fade" id="modal-pagamento" tabindex="-1" role="dialog" aria-labelledby="modal-pagamento-label" aria-hidden="true">
+    <div class="modal fade" id="modal-pagamento" tabindex="-1" role="dialog" aria-labelledby="modal-pagamento-label"
+        aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -72,10 +80,10 @@
             </div>
         </div>
     </div>
-
+    @csrf
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#selectProduto').select2({
                 placeholder: 'Selecione um produto',
             });
@@ -94,13 +102,42 @@
         // Função para gerenciar o carrinho
         $('#pagar').click(function() {
             var formaPagamento = $('#forma-pagamento').val();
-            // Adicione a lógica para processar o pagamento conforme a forma escolhida.
-            // Por exemplo, exibir um recibo ou enviar um pedido de pagamento.
-            alert('Pagamento efetuado com ' + formaPagamento);
-            $('#carrinho').empty();
-            $('#total').text('0.00');
-            $('#modal-pagamento').modal('hide');
+            var total = parseFloat($('#total').text());
+            var produtos = []; 
+            $('#carrinho li').each(function() {
+                var item = $(this).text().split(' - $');
+                var produto = {
+                    nome: item[0],
+                    preco: parseFloat(item[1]),
+                };
+                produtos.push(produto);
+            });
+
+            $.ajax({
+                type: 'POST',
+                url: '/salvar-venda',
+                data: {
+                    _token: "{{ csrf_token() }}", 
+                    formaPagamento: formaPagamento,
+                    total: total,
+                    produtos: produtos,
+                },
+                success: function(response) {
+                    if (response.success) {
+                        alert('Venda salva com sucesso');
+                        $('#carrinho').empty();
+                        $('#total').text('0.00');
+                        $('#modal-pagamento').modal('hide');
+                    } else {
+                        alert('Erro ao salvar a venda');
+                    }
+                },
+                error: function() {
+                    alert('Erro ao conectar-se ao servidor');
+                },
+            });
         });
     </script>
 </body>
+
 </html>
