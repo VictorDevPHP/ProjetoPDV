@@ -9,7 +9,6 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
-    <link rel="stylesheet" href="{{asset('table-pdv.css')}}">
     <style>
         #carrinho {
             max-height: 300px;
@@ -17,11 +16,9 @@
         }
 
         .table-container {
-            max-height: 500px;
+            max-height: 600px;
             overflow-y: auto;
-            max-width: 800px;
         }
-
         .table {
             width: 400px;
             /* Defina a largura fixa desejada */
@@ -47,7 +44,7 @@
                         @foreach ($produtos as $produto)
                             @if ($produto->quantidade > 0)
                                 <option value="{{ $produto->id }}" data-preco="{{ $produto->preco }}">
-                                    {{ $produto->id }} - {{ $produto->nome }} - R${{ $produto->preco }}</option>
+                                    {{ $produto->id }} - {{ $produto->nome }}</option>
                             @endif
                         @endforeach
                     </select>
@@ -64,16 +61,14 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Item</th>
-                                <th>Quantidade</th>
+                                <th class="mb-2">Item</th>
+                                <th>Qtd</th>
                                 <th>Preço Unitário</th>
                                 <th>Total</th>
                                 <th>Ações</th>
                             </tr>
-
                         </thead>
                         <tbody id="carrinho">
-
                         </tbody>
                     </table>
                 </div>
@@ -83,7 +78,6 @@
             </div>
         </div>
     </div>
-
     <!-- Modal de Pagamento -->
     <div class="modal fade" id="modal-pagamento" tabindex="-1" role="dialog" aria-labelledby="modal-pagamento-label"
         aria-hidden="true">
