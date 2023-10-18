@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class Pdv extends Component
 {
+    public $produtos;
     public function render()
     {
         $produtos = Produto::all();
