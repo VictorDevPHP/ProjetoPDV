@@ -9,14 +9,26 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="{{asset('table-pdv.css')}}">
     <style>
         #carrinho {
             max-height: 300px;
             overflow-y: auto;
         }
+
         .table-container {
-            max-height: 400px;
+            max-height: 500px;
             overflow-y: auto;
+            max-width: 800px;
+        }
+
+        .table {
+            width: 400px;
+            /* Defina a largura fixa desejada */
+            max-height: 500px;
+            /* Defina a altura máxima desejada */
+            overflow-y: auto;
+            /* Adiciona rolagem vertical quando necessário */
         }
     </style>
 </head>
@@ -56,10 +68,12 @@
                                 <th>Quantidade</th>
                                 <th>Preço Unitário</th>
                                 <th>Total</th>
+                                <th>Ações</th>
                             </tr>
+
                         </thead>
                         <tbody id="carrinho">
-                            <!-- Os itens do carrinho serão adicionados aqui -->
+
                         </tbody>
                     </table>
                 </div>
@@ -67,8 +81,6 @@
                 <button class="btn btn-success mt-3" id="finalizar-compra" data-toggle="modal"
                     data-target="#modal-pagamento">Finalizar Compra</button>
             </div>
-
-
         </div>
     </div>
 
@@ -135,8 +147,9 @@
                 console.log("ID: ", id);
                 console.log("Quantidade: ", quantidade);
                 console.log("Preço: ", preco);
+
                 if (!isNaN(quantidade) && !isNaN(
-                        preco)) { 
+                        preco)) {
                     var produtoExistente = $('#carrinho tr[data-id="' + id + '"]');
 
                     if (produtoExistente.length > 0) {
@@ -153,6 +166,7 @@
                             '<td class="quantidade">' + quantidade + '</td>' +
                             '<td>R$' + preco.toFixed(2) + '</td>' +
                             '<td class="total">R$' + (preco * quantidade).toFixed(2) + '</td>' +
+                            '<td><button class="btn btn-danger remover-produto">Remover</button></td>' +
                             '</tr>';
                         $('#carrinho').append(carrinhoItem);
                     }
@@ -161,6 +175,11 @@
                 } else {
                     alert('A quantidade ou o preço não é um número válido.');
                 }
+            });
+            $('#carrinho').on('click', '.remover-produto', function() {
+                var linha = $(this).closest('tr');
+                linha.remove();
+                atualizarTotal();
             });
 
             $('#pagar').click(function() {
