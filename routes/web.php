@@ -27,8 +27,8 @@ Route::middleware(['auth'])->group(function () {
         return view('pages');
     });
 
-    Route::get('/livewire/pdv', [Pdv::class, 'render'])->name('pdv'); 
-    
+    Route::get('/livewire/pdv', [Pdv::class, 'render'])->name('pdv');
+
     // Route form cadastro-produtos
     Route::get('/livewire/components/form-produto', function () {
         return view('livewire.components.form-produto');
@@ -37,7 +37,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/livewire/components/form-produto/editar/{id}', [FormProduto::class, 'editar'])->name('formEditar');
     Route::post('/livewire/components/form-produto/editar/{id}', [FormProduto::class, 'update'])->name('postUpdate');
     Route::get('/livewire/components/form-produto/deletar/{id}', [FormProduto::class, 'deletar'])->name('deleteProduto');
-    
+
     // Route estoque
     Route::get('/livewire/estoque', [Estoque::class, 'render',])->name('estoque');
 

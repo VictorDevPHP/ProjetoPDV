@@ -89,35 +89,56 @@
             });
         });
 
+        // Fun  ção para adicionar produtos ao carrinho
         // Função para adicionar produtos ao carrinho
         $('#adicionar-ao-carrinho').click(function() {
             var produtoSelecionado = $('#selectProduto option:selected');
             var nome = produtoSelecionado.text();
             var preco = parseFloat(produtoSelecionado.data('preco'));
-            $('#carrinho').append('<li class="list-group-item">' + nome + ' - $' + preco.toFixed(2) + '</li>');
-            var total = parseFloat($('#total').text()) + preco;
+            var id = parseInt(nome.split(' - ')[0]); 
+            var quantidade = 1; 
+
+            var regex = /^(\d+) -/;
+            var match = nome.match(regex);
+            if (match) {
+                quantidade = parseInt(match[1]);
+                nome = nome.replace(match[0], '').trim();
+            }
+
+            var carrinhoItem = '<li class="list-group-item" data-id="' + id + '" data-quantidade="' + quantidade +
+                '">' + nome + ' - $' + (preco * quantidade).toFixed(2) + '</li>';
+            $('#carrinho').append(carrinhoItem);
+
+            var total = parseFloat($('#total').text()) + (preco *
+                quantidade);
             $('#total').text(total.toFixed(2));
         });
-
-        // Função para gerenciar o carrinho
         $('#pagar').click(function() {
             var formaPagamento = $('#forma-pagamento').val();
             var total = parseFloat($('#total').text());
-            var produtos = []; 
+            var produtos = [];
+
             $('#carrinho li').each(function() {
-                var item = $(this).text().split(' - $');
+                var id = parseInt($(this).data('id'));
+                var quantidade = parseInt($(this).data('quantidade'));
+                var nome = $(this).text();
+                var preco = parseFloat(nome.split(' - $')[1]);
+                nome = nome.split(' - $')[0];
+
                 var produto = {
-                    nome: item[0],
-                    preco: parseFloat(item[1]),
+                    id: id,
+                    nome: nome,
+                    preco: preco,
+                    quantidade: quantidade,
                 };
+
                 produtos.push(produto);
             });
-
             $.ajax({
                 type: 'POST',
                 url: '/salvar-venda',
                 data: {
-                    _token: "{{ csrf_token() }}", 
+                    _token: "{{ csrf_token() }}",
                     formaPagamento: formaPagamento,
                     total: total,
                     produtos: produtos,
