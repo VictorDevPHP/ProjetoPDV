@@ -16,7 +16,7 @@ class Vendas extends Controller
         $formaPagamento = $request->input('formaPagamento');
         $total = $request->input('total');
         $produtos = $request->input('produtos');
-
+        // var_dump($total);
         foreach ($produtos as $produto) {
             $id = $produto['id'];
             $quantidadeVendida = $produto['quantidade'];

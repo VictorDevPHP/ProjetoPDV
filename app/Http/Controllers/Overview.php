@@ -10,10 +10,17 @@ class Overview extends Controller
 
     public function render(){
 
-        $produtos = count(Produto::all());
-        $foraEstoque = Produto::where('quantidade', 0)->count();
+        $produtos_quantidade = count(Produto::all());
+
+        $produtos = Produto::all();
+        $foraEstoque = 0;
+        foreach ($produtos as $produto) {
+            if($produto->quantidade == 0 || $produto->quantidade < 0){
+                $foraEstoque = $foraEstoque+1; 
+            }
+        }
         return view('pages', compact(
-            'produtos',
+            'produtos_quantidade',
             'foraEstoque',
         ));
     }

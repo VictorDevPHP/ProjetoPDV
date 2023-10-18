@@ -14,6 +14,10 @@
             max-height: 300px;
             overflow-y: auto;
         }
+        .table-container {
+            max-height: 400px;
+            overflow-y: auto;
+        }
     </style>
 </head>
 
@@ -31,10 +35,12 @@
                         @foreach ($produtos as $produto)
                             @if ($produto->quantidade > 0)
                                 <option value="{{ $produto->id }}" data-preco="{{ $produto->preco }}">
-                                    {{ $produto->id }} - {{ $produto->nome }}</option>
+                                    {{ $produto->id }} - {{ $produto->nome }} - R${{ $produto->preco }}</option>
                             @endif
                         @endforeach
                     </select>
+                    <label for="quantidade">Quantidade:</label>
+                    <input type="number" class="form-control" id="quantidade" value="1" min="1">
                     <button class="btn btn-primary mt-2" id="adicionar-ao-carrinho">Adicionar ao Carrinho</button>
                 </div>
             </div>
@@ -42,12 +48,27 @@
             <!-- Carrinho de Compras -->
             <div class="col-lg-5">
                 <h2>Carrinho de Compras</h2>
-                <ul class="list-group" id="carrinho">
-                </ul>
-                <h4 class="mt-3 total">Total: $<span id="total">0.00</span></h4>
+                <div class="table-container">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Quantidade</th>
+                                <th>Preço Unitário</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody id="carrinho">
+                            <!-- Os itens do carrinho serão adicionados aqui -->
+                        </tbody>
+                    </table>
+                </div>
+                <h4 class="mt-3 total">Total: R$<span id="total">0.00</span></h4>
                 <button class="btn btn-success mt-3" id="finalizar-compra" data-toggle="modal"
                     data-target="#modal-pagamento">Finalizar Compra</button>
             </div>
+
+
         </div>
     </div>
 
@@ -83,79 +104,109 @@
     @csrf
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script>
+        function atualizarTotal() {
+            var total = 0;
+            $('#carrinho tr').each(function() {
+                var preco = parseFloat($(this).data('preco'));
+                var quantidade = parseInt($(this).data('quantidade'));
+
+                if (!isNaN(preco) && !isNaN(quantidade)) {
+                    var subtotal = preco * quantidade;
+                    total += subtotal;
+                    $(this).find('.total').text('R$' + subtotal.toFixed(2));
+                }
+            });
+            $('#total').text('R$' + total.toFixed(2));
+        }
         $(document).ready(function() {
             $('#selectProduto').select2({
                 placeholder: 'Selecione um produto',
             });
-        });
 
-        // Fun  ção para adicionar produtos ao carrinho
-        // Função para adicionar produtos ao carrinho
-        $('#adicionar-ao-carrinho').click(function() {
-            var produtoSelecionado = $('#selectProduto option:selected');
-            var nome = produtoSelecionado.text();
-            var preco = parseFloat(produtoSelecionado.data('preco'));
-            var id = parseInt(nome.split(' - ')[0]); 
-            var quantidade = 1; 
+            // Função para adicionar produtos ao carrinho
+            $('#adicionar-ao-carrinho').click(function() {
+                var produtoSelecionado = $('#selectProduto option:selected');
+                var nome = produtoSelecionado.text();
+                var id = produtoSelecionado.val();
+                var quantidade = parseInt($('#quantidade').val()) || 1;
+                var preco = parseFloat(produtoSelecionado.data('preco'));
 
-            var regex = /^(\d+) -/;
-            var match = nome.match(regex);
-            if (match) {
-                quantidade = parseInt(match[1]);
-                nome = nome.replace(match[0], '').trim();
-            }
+                console.log("Produto: ", nome);
+                console.log("ID: ", id);
+                console.log("Quantidade: ", quantidade);
+                console.log("Preço: ", preco);
+                if (!isNaN(quantidade) && !isNaN(
+                        preco)) { 
+                    var produtoExistente = $('#carrinho tr[data-id="' + id + '"]');
 
-            var carrinhoItem = '<li class="list-group-item" data-id="' + id + '" data-quantidade="' + quantidade +
-                '">' + nome + ' - $' + (preco * quantidade).toFixed(2) + '</li>';
-            $('#carrinho').append(carrinhoItem);
-
-            var total = parseFloat($('#total').text()) + (preco *
-                quantidade);
-            $('#total').text(total.toFixed(2));
-        });
-        $('#pagar').click(function() {
-            var formaPagamento = $('#forma-pagamento').val();
-            var total = parseFloat($('#total').text());
-            var produtos = [];
-
-            $('#carrinho li').each(function() {
-                var id = parseInt($(this).data('id'));
-                var quantidade = parseInt($(this).data('quantidade'));
-                var nome = $(this).text();
-                var preco = parseFloat(nome.split(' - $')[1]);
-                nome = nome.split(' - $')[0];
-
-                var produto = {
-                    id: id,
-                    nome: nome,
-                    preco: preco,
-                    quantidade: quantidade,
-                };
-
-                produtos.push(produto);
-            });
-            $.ajax({
-                type: 'POST',
-                url: '/salvar-venda',
-                data: {
-                    _token: "{{ csrf_token() }}",
-                    formaPagamento: formaPagamento,
-                    total: total,
-                    produtos: produtos,
-                },
-                success: function(response) {
-                    if (response.success) {
-                        alert('Venda salva com sucesso');
-                        $('#carrinho').empty();
-                        $('#total').text('0.00');
-                        $('#modal-pagamento').modal('hide');
+                    if (produtoExistente.length > 0) {
+                        var quantidadeExistente = parseInt(produtoExistente.data('quantidade'));
+                        var novaQuantidade = quantidadeExistente + quantidade;
+                        produtoExistente.data('quantidade', novaQuantidade);
+                        var novoPreco = (preco * novaQuantidade).toFixed(2);
+                        produtoExistente.find('.quantidade').text(novaQuantidade);
+                        produtoExistente.find('.total').text('R$' + novoPreco);
                     } else {
-                        alert('Erro ao salvar a venda');
+                        var carrinhoItem = '<tr data-id="' + id + '" data-quantidade="' +
+                            quantidade + '" data-preco="' + preco + '">' +
+                            '<td>' + nome + '</td>' +
+                            '<td class="quantidade">' + quantidade + '</td>' +
+                            '<td>R$' + preco.toFixed(2) + '</td>' +
+                            '<td class="total">R$' + (preco * quantidade).toFixed(2) + '</td>' +
+                            '</tr>';
+                        $('#carrinho').append(carrinhoItem);
                     }
-                },
-                error: function() {
-                    alert('Erro ao conectar-se ao servidor');
-                },
+
+                    atualizarTotal();
+                } else {
+                    alert('A quantidade ou o preço não é um número válido.');
+                }
+            });
+
+            $('#pagar').click(function() {
+                var formaPagamento = $('#forma-pagamento').val();
+                var total = parseFloat($('#total').text());
+                var produtos = [];
+
+                $('#carrinho tr').each(function() {
+                    var id = parseInt($(this).data('id'));
+                    var quantidade = parseInt($(this).data('quantidade'));
+                    var nome = $(this).data('nome');
+                    var preco = parseFloat($(this).data('preco'));
+
+                    var produto = {
+                        id: id,
+                        nome: nome,
+                        preco: preco,
+                        quantidade: quantidade,
+                    };
+
+                    produtos.push(produto);
+                });
+                var total = parseFloat($('#total').text().replace('R$', ''));
+                $.ajax({
+                    type: 'POST',
+                    url: '/salvar-venda',
+                    data: {
+                        _token: "{{ csrf_token() }}",
+                        formaPagamento: formaPagamento,
+                        total: total,
+                        produtos: produtos,
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            alert('Venda salva com sucesso');
+                            $('#carrinho').empty();
+                            $('#total').text('R$0.00');
+                            $('#modal-pagamento').modal('hide');
+                        } else {
+                            alert('Erro ao salvar a venda');
+                        }
+                    },
+                    error: function() {
+                        alert('Erro ao conectar-se ao servidor');
+                    },
+                });
             });
         });
     </script>

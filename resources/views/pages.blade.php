@@ -6,7 +6,7 @@
         <!-- small card -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>{{ $produtos }}</h3>
+                <h3>{{ $produtos_quantidade }}</h3>
                 <p>Produtos Cadastrados</p>
             </div>
             <div class="icon">
@@ -28,7 +28,7 @@
                 <i class="fas fa-chart-pie"></i>
             </div>
             <a href="{{ route('estoque') }}" class="small-box-footer">
-                More info <i class="fas fa-arrow-circle-right"></i>
+                Mais informações <i class="fas fa-arrow-circle-right"></i>
             </a>
         </div>
     </div>
