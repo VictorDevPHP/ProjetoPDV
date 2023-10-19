@@ -6,6 +6,9 @@ use App\Http\Livewire\Components\FormProduto;
 use App\Http\Livewire\Estoque;
 use App\Http\Controllers\Overview;
 use App\Http\Controllers\Vendas;
+use App\Http\Livewire\ListaVenda;
+use App\Http\Livewire\ProdutosVendidos;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +49,12 @@ Route::middleware(['auth'])->group(function () {
 
     // Route Venda
     Route::post('/salvar-venda', [Vendas::class, 'salvarVenda'])->name('venda');
+
+    // Route ListaVenda
+    Route::get('/livewire/lista-venda', [ListaVenda::class, 'render'])->name('lista-venda');
+
+     // Route ListaVenda
+    Route::get('/livewire/produtos-vendidos', [ProdutosVendidos::class, 'render'])->name('produtos-vendidos');
 
 });
 

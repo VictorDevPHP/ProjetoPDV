@@ -155,7 +155,7 @@
                         produtoExistente.find('.total').text('R$' + novoPreco);
                     } else {
                         var carrinhoItem = '<tr data-id="' + id + '" data-quantidade="' +
-                            quantidade + '" data-preco="' + preco + '">' +
+                            quantidade + '" data-preco="' + preco + '" data-nome="' + nome + '">' +
                             '<td>' + nome + '</td>' +
                             '<td class="quantidade">' + quantidade + '</td>' +
                             '<td>R$' + preco.toFixed(2) + '</td>' +
@@ -208,7 +208,7 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            alert('Venda salva com sucesso');
+                            alert('Venda Realizada com sucesso');
                             $('#carrinho').empty();
                             $('#total').text('R$0.00');
                             $('#modal-pagamento').modal('hide');

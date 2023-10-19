@@ -33,3 +33,20 @@
         </div>
     </div>
 </div>
+<div class="row">
+    <div class="col-lg-3 col-6 mx-auto">
+        <!-- small card -->
+        <div class="small-box bg-success">
+            <div class="inner">
+                <h3>R${{ $somaVendas }}</h3>
+                <p>Total de Vendas no Sistema</p>
+            </div>
+            <div class="icon">
+                <i class="fas fa-chart-pie"></i>
+            </div>
+            <a href="{{ route('lista-venda') }}" class="small-box-footer">
+                Mais informações <i class="fas fa-arrow-circle-right"></i>
+            </a>
+        </div>
+    </div>
+</div>

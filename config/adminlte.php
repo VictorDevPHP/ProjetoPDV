@@ -319,6 +319,19 @@ return [
             'label_color' => 'success',
             'can'         => 'gerente',  
         ],
+        [
+            'text'        => 'Vendas',
+            'url'         => 'livewire/lista-venda',
+            'icon'        => 'fas fa-cash-register',
+            'label_color' => 'success',
+            'can'         => 'gerente',  
+        ],
+        [
+            'text'        => 'Produtos Vendidos',
+            'url'         => 'livewire/produtos-vendidos',
+            'icon'        => 'fas fa-clipboard-check',
+            'can'         => 'gerente',  
+        ],
                 
         [
             'text'        => 'Estoque',
@@ -327,6 +340,7 @@ return [
             'label_color' => 'success',
             'can'         => 'gerente',  
         ],
+        ['header' => 'Frente De Caixa'],
         [
             'text'        => 'PDV',
             'url'         => 'livewire/pdv',
@@ -334,8 +348,6 @@ return [
             'label_color' => 'success',
             'can'         => 'gerente',  
         ],
-
-        ['header' => 'account_settings'],
 
 
         // [
