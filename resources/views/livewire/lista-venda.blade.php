@@ -16,6 +16,7 @@
                     <th>Valor</th>
                     <th>Data</th>
                     <th>Forma De Pagamento</th>
+                    <th>Venda Detalhada</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,6 +27,9 @@
                             <td> R${{ $venda->valor_total }}</td>
                             <td>{{ $venda->created_at->format('d/m/Y H:i') }}</td>
                             <td>{{ $venda->forma_pagamento }}</td>
+                            <td>
+                                <a href="{{ route('produtos-vendidos') }}" class="btn btn-outline-success">Ver</a>
+                            </td>
                         </tr>
                     @endforeach
                 @else

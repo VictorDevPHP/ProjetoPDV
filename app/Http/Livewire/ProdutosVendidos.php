@@ -13,12 +13,10 @@ class ProdutosVendidos extends Component
     {
         $this->data = (new Overview())->getTotalVenda();
         $produtos_vendidos = $this->data['produtos'];
-
-        // dd($produtos_vendidos);
-
-
-        return view('livewire.produtos-vendidos', compact(
-            'produtos_vendidos',
+        
+        return view('livewire.produtos-vendidos',
+            compact(
+                'produtos_vendidos',
         ));
     }
 }
