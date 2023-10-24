@@ -369,7 +369,7 @@ return [
                 [
                     'text' => 'Cadastro de Produtos',
                     'icon'    => 'fas fa-box-open',
-                    'url'  => '#',
+                    'url'  => '/livewire/components/form-produto',
                 ],
             ],
         ],
