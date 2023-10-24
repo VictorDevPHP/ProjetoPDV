@@ -332,14 +332,26 @@ return [
             'icon'        => 'fas fa-clipboard-check',
             'can'         => 'gerente',  
         ],
-                
+
         [
-            'text'        => 'Estoque',
-            'url'         => 'livewire/estoque',
-            'icon'        => 'fas fa-box-open',
-            'label_color' => 'success',
-            'can'         => 'gerente',  
+            'text'    => 'Listas',
+            'icon'    => 'fas fa-poll',
+            'submenu' => [
+                [
+                    'text' => 'Clientes Cadastrados',
+                    'icon'    => 'fas fa-list-alt',
+                    'url'  => '/livewire/listas/clientes',
+                ],
+                [
+                    'text'        => 'Estoque',
+                    'url'         => 'livewire/estoque',
+                    'icon'        => 'fas fa-box-open',
+                    'label_color' => 'success',
+                    'can'         => 'gerente',  
+                ],
+            ],
         ],
+
         [
             'text'    => 'Cadastro',
             'icon'    => 'fas fa-align-left',

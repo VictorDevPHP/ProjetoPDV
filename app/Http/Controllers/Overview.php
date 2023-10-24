@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Produto;
 use App\Models\Venda;
+use App\Models\Clientes;
 
 class Overview extends Controller
 {  
@@ -44,6 +45,14 @@ class Overview extends Controller
         
         return [
             'produtos' => $vendas['produtos'],
+        ];
+    }
+
+    public function getTotalClientes(){
+        $clientes = Clientes::all();
+        
+        return [
+            'clientes' => $clientes,
         ];
     }
     

@@ -60,6 +60,12 @@ Route::middleware(['auth'])->group(function () {
     // Route CadastroCliente
     Route::get('/livewire/cadastro/cadastro-cliente', [CadastroCliente::class, 'render'])->name('cadastro-cliente');
     Route::post('/livewire/cadastro/cadastro-cliente', [CadastroCliente::class, 'ClienteSave'])->name('cadastro-cliente');
+    Route::get('/livewire/cadastro/cadastro-cliente/{id}', [CadastroCliente::class, 'editarCliente'])->name('editar-cliente');
+    Route::post('/livewire/cadastro/cadastro-cliente/{id}', [CadastroCliente::class, 'clienteUpdate'])->name('clienteUpdate');
+
+    // Route Lista Cliente
+    Route::get('/livewire/listas/clientes', [App\Http\Livewire\Listas\Clientes::class, 'render'])->name('clientes');
+
 
 });
 
