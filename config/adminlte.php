@@ -340,6 +340,27 @@ return [
             'label_color' => 'success',
             'can'         => 'gerente',  
         ],
+        [
+            'text'    => 'Cadastro',
+            'icon'    => 'fas fa-align-left',
+            'submenu' => [
+                [
+                    'text' => 'Cadastro de Cliente',
+                    'icon'    => 'fas fa-users',
+                    'url'  => '/livewire/cadastro/cadastro-cliente',
+                ],
+                [
+                    'text' => 'Cadastro de Funcionarios',
+                    'icon'    => 'fas fa-user-plus',
+                    'url'  => '#',
+                ],
+                [
+                    'text' => 'Cadastro de Produtos',
+                    'icon'    => 'fas fa-box-open',
+                    'url'  => '#',
+                ],
+            ],
+        ],
         ['header' => 'Frente De Caixa'],
         [
             'text'        => 'PDV',
@@ -350,55 +371,6 @@ return [
         ],
 
 
-        // [
-        //     'text' => 'profile',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-user',
-        // ],
-
-        // [
-        //     'text' => 'change_password',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'fas fa-fw fa-lock',
-        // ],
-        // [
-        //     'text'    => 'multilevel',
-        //     'icon'    => 'fas fa-fw fa-share',
-        //     'submenu' => [
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //         [
-        //             'text'    => 'level_one',
-        //             'url'     => '#',
-        //             'submenu' => [
-        //                 [
-        //                     'text' => 'level_two',
-        //                     'url'  => '#',
-        //                 ],
-        //                 [
-        //                     'text'    => 'level_two',
-        //                     'url'     => '#',
-        //                     'submenu' => [
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                         [
-        //                             'text' => 'level_three',
-        //                             'url'  => '#',
-        //                         ],
-        //                     ],
-        //                 ],
-        //             ],
-        //         ],
-        //         [
-        //             'text' => 'level_one',
-        //             'url'  => '#',
-        //         ],
-        //     ],
-        // ],
         // ['header' => 'labels'],
         // [
         //     'text'       => 'important',

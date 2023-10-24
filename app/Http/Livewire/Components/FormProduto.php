@@ -24,8 +24,7 @@ class FormProduto extends Component
     }
     public function editar($id){
         $produto = Produto::find($id);
-        return view('livewire.components.form-produto', ['produto' => $produto]);
-        
+        return view('livewire.components.form-produto', ['produto' => $produto]);  
     }
     public function update(Request $request, $id){
         $produto = Produto::find($id);

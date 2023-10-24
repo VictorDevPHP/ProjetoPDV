@@ -8,6 +8,7 @@ use App\Http\Controllers\Overview;
 use App\Http\Controllers\Vendas;
 use App\Http\Livewire\ListaVenda;
 use App\Http\Livewire\ProdutosVendidos;
+use App\Http\Livewire\cadastro\CadastroCliente;
 
 
 /*
@@ -55,6 +56,10 @@ Route::middleware(['auth'])->group(function () {
 
      // Route ListaVenda
     Route::get('/livewire/produtos-vendidos', [ProdutosVendidos::class, 'render'])->name('produtos-vendidos');
+
+    // Route CadastroCliente
+    Route::get('/livewire/cadastro/cadastro-cliente', [CadastroCliente::class, 'render'])->name('cadastro-cliente');
+    Route::post('/livewire/cadastro/cadastro-cliente', [CadastroCliente::class, 'ClienteSave'])->name('cadastro-cliente');
 
 });
 

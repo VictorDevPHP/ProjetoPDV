@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela de PDV</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
@@ -33,11 +34,11 @@
 <body>
     @csrf
     <div class="container mt-5">
-        <h1 class="text-center">Frente de Caixa</h1>
+        <h1 class="text-center"><i class="fas fa-cash-register"></i> Frente de Caixa</h1>
         <div class="row mt-4">
             <!-- Lista de Produtos -->
             <div class="col-lg-6 border-right pr-4">
-                <h2>Produtos</h2>
+                <h2><i class="fas fa-list"></i> Produtos</h2>
                 <div class="form-group">
                     <select class="form-control" id="selectProduto" data-placeholder="Selecione um produto">
                         <option value="" disabled selected>Selecione um produto</option>
@@ -56,7 +57,7 @@
             <div class="col-lg-1 border-left border-right"></div>
             <!-- Carrinho de Compras -->
             <div class="col-lg-5">
-                <h2>Carrinho de Compras</h2>
+                <h2><i class="fas fa-shopping-cart"></i> Carrinho de Compras</h2>
                 <div class="table-container">
                     <table class="table">
                         <thead>
