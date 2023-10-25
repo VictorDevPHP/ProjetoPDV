@@ -343,6 +343,13 @@ return [
                     'url'  => '/livewire/listas/clientes',
                 ],
                 [
+                    'text'        => 'Funcionarios',
+                    'url'         => '/livewire/listas/funcionarios',
+                    'icon'        => 'fas fa-user-plus',
+                    'label_color' => 'success',
+                    'can'         => 'gerente',  
+                ],
+                [
                     'text'        => 'Estoque',
                     'url'         => 'livewire/estoque',
                     'icon'        => 'fas fa-box-open',
@@ -364,7 +371,7 @@ return [
                 [
                     'text' => 'Cadastro de Funcionarios',
                     'icon'    => 'fas fa-user-plus',
-                    'url'  => '#',
+                    'url'  => '/livewire/cadastro/cadastro-funcionario',
                 ],
                 [
                     'text' => 'Cadastro de Produtos',

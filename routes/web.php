@@ -9,6 +9,8 @@ use App\Http\Controllers\Vendas;
 use App\Http\Livewire\ListaVenda;
 use App\Http\Livewire\ProdutosVendidos;
 use App\Http\Livewire\cadastro\CadastroCliente;
+use App\Http\Livewire\cadastro\CadastroFuncionario;
+use App\Http\Livewire\Listas\Funcionarios;
 
 
 /*
@@ -66,7 +68,14 @@ Route::middleware(['auth'])->group(function () {
     // Route Lista Cliente
     Route::get('/livewire/listas/clientes', [App\Http\Livewire\Listas\Clientes::class, 'render'])->name('clientes');
 
+    // Route Lista Funcionario
+    Route::get('/livewire/listas/funcionarios', [Funcionarios::class, 'render'])->name('funcionarios');
 
+    // Route Cadastro Funcionario
+    Route::get('/livewire/cadastro/cadastro-funcionario', [CadastroFuncionario::class, 'render'])->name('cadastro-funcionario');
+    Route::post('/livewire/cadastro/cadastro-funcionario', [CadastroFuncionario::class, 'formFuncionario'])->name('form-funcionario');
+    Route::get('/livewire/cadastro/cadastro-funcionario/{id}', [CadastroFuncionario::class, 'editarFuncionario'])->name('editar-funcionario');
+    Route::post('/livewire/cadastro/cadastro-funcionario/{id}', [CadastroFuncionario::class, 'funcionarioUpdate'])->name('funcionarioUpdate');
 });
 
 Auth::routes();

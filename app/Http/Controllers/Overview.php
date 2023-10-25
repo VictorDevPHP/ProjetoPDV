@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Funcionarios;
 use App\Models\Produto;
 use App\Models\Venda;
 use App\Models\Clientes;
@@ -53,6 +54,14 @@ class Overview extends Controller
         
         return [
             'clientes' => $clientes,
+        ];
+    }
+
+    public function getTotalFuncionarios(){
+        $funcionarios = Funcionarios::all();
+
+        return [
+            'funcionarios' => $funcionarios
         ];
     }
     
