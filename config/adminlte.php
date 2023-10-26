@@ -356,6 +356,13 @@ return [
                     'label_color' => 'success',
                     'can'         => 'gerente',  
                 ],
+                [
+                    'text'        => 'Fornecedores',
+                    'url'         => '/livewire/listas/fornecedor',
+                    'icon'        => 'fas fa-truck-loading',
+                    'label_color' => 'success',
+                    'can'         => 'gerente',  
+                ],
             ],
         ],
 

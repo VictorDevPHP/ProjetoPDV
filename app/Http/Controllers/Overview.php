@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fornecedor;
 use App\Models\Funcionarios;
 use App\Models\Produto;
 use App\Models\Venda;
@@ -65,4 +66,11 @@ class Overview extends Controller
         ];
     }
     
+    public function getTotalFornecedores(){
+        $forcedores = Fornecedor::all();
+
+        return [
+            'fornecedores' => $forcedores
+        ];
+    }
 }

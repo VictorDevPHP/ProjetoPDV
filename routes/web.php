@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Livewire\Cadastro\CadastroFornecedor;
+use App\Http\Livewire\Listas\Fornecedor;
 use App\Http\Livewire\Pdv;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Components\FormProduto;
@@ -81,6 +82,10 @@ Route::middleware(['auth'])->group(function () {
     // Route Cadastro Fornecedor
     Route::get('/livewire/cadastro/cadastro-fornecedor', [CadastroFornecedor::class, 'render'])->name('cadastro-fornecedor');
     Route::post('/livewire/cadastro/cadastro-fornecedor', [CadastroFornecedor::class, 'formFornecedor'])->name('form-fornecedor');
+
+    // Route Lista Fornecedor
+    Route::get('/livewire/listas/fornecedor', [Fornecedor::class, 'render'])->name('fornecedor-lista');
+
 });
 
 Auth::routes();
