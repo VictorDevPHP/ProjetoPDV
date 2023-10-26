@@ -378,6 +378,11 @@ return [
                     'icon'    => 'fas fa-box-open',
                     'url'  => '/livewire/components/form-produto',
                 ],
+                [
+                    'text' => 'Cadastro Fornecedor',
+                    'icon'    => 'fas fa-truck-loading',
+                    'url'  => '/livewire/cadastro/cadastro-fornecedor',
+                ],
             ],
         ],
         ['header' => 'Frente De Caixa'],
