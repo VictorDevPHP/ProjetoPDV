@@ -31,8 +31,12 @@
                         <td>{{ $produto->quantidade }}</td>
                         <td>{{ $produto->marca }}</td>
                         <td class="col-2">
-                            <a href="{{ route('formEditar', ['id' => $produto->id]) }}" class="btn btn-block btn-outline-success">Editar </a>
-                            <a href="{{ route('deleteProduto', ['id' => $produto->id]) }}" class="btn btn-block btn-outline-danger">Excluir </a>
+                            <a href="{{ route('formEditar', ['id' => $produto->id]) }}"
+                                class="btn btn-block btn-outline-success">Editar
+                            </a>
+                            <a href="{{ route('deleteProduto', ['id' => $produto->id]) }}"
+                                class="btn btn-block btn-outline-danger">Excluir
+                            </a>
                         </td>
                     </tr>
                 @endforeach

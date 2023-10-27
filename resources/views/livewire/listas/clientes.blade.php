@@ -20,14 +20,16 @@
                 @if ($clientes)
                     @foreach ($clientes as $cliente)
                         <tr>
-                            <td>{{ $cliente->id}}</td>
-                            <td>{{ $cliente->nome}}</td>
+                            <td>{{ $cliente->id }}</td>
+                            <td>{{ $cliente->nome }}</td>
                             <td>{{ $cliente->endereco }}</td>
-                            <td>{{ $cliente->cpf}}</td>
-                            <td>{{ $cliente->whatsapp}}</td>
-                            <td>R${{ $cliente->saldo}}</td>
+                            <td>{{ $cliente->cpf }}</td>
+                            <td>{{ $cliente->whatsapp }}</td>
+                            <td>R${{ $cliente->saldo }}</td>
                             <td>
-                                <a href="{{ route('editar-cliente', ['id' => $cliente->id]) }}" class="btn btn-outline-success">Editar Cliente</a>
+                                <a href="{{ route('editar-cliente', ['id' => $cliente->id]) }}"
+                                    class="btn btn-outline-success">Editar Cliente
+                                </a>
                             </td>
                         </tr>
                     @endforeach

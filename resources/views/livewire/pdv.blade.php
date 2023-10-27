@@ -20,6 +20,7 @@
             max-height: 600px;
             overflow-y: auto;
         }
+
         .table {
             width: 400px;
             /* Defina a largura fixa desejada */

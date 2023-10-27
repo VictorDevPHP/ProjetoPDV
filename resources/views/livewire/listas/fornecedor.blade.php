@@ -20,11 +20,11 @@
                 @if ($fornecedores)
                     @foreach ($fornecedores as $fornecedor)
                         <tr>
-                            <td>{{ $fornecedor->id}}</td>
-                            <td>{{ $fornecedor->nome}}</td>
+                            <td>{{ $fornecedor->id }}</td>
+                            <td>{{ $fornecedor->nome }}</td>
                             <td>{{ $fornecedor->endereco }}</td>
-                            <td>{{ $fornecedor->cnpj}}</td>
-                            <td>{{ $fornecedor->contato}}</td>
+                            <td>{{ $fornecedor->cnpj }}</td>
+                            <td>{{ $fornecedor->contato }}</td>
                             <td>
                                 <a href="#" class="btn btn-outline-success">Editar Fornecedor</a>
                             </td>

@@ -9,37 +9,38 @@
         });
     </script>
 
-<div>
-    {{-- @dd($produtos_vendidos) --}}
-    <div class="card-body">
-        <table id="produtos" class="table table-bordered table-striped">
-            <thead>
-                <tr>
-                    <th>ID da Venda</th>
-                    <th>Produtos</th>
-                    <th>Data</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($produtos_vendidos as $venda)
+    <div>
+        {{-- @dd($produtos_vendidos) --}}
+        <div class="card-body">
+            <table id="produtos" class="table table-bordered table-striped">
+                <thead>
                     <tr>
-                        <td>{{ $venda->id_venda }}</td>
-                        <td>
-                            <ul>
-                                @php
-                                    $produtos = $venda->produtos;
-                                @endphp
-                                @foreach ($produtos as $produto)
-                                    <li>
-                                        ID - {{ $produto['nome'] }} ------------- {{$produto['quantidade']}}x(R$ {{ $produto['preco'] }})
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </td>
-                        <td>{{ $venda->created_at->format('d/m/Y H:i') }}</td>
+                        <th>ID da Venda</th>
+                        <th>Produtos</th>
+                        <th>Data</th>
                     </tr>
-                @endforeach
-            </tbody>
-        </table>
+                </thead>
+                <tbody>
+                    @foreach ($produtos_vendidos as $venda)
+                        <tr>
+                            <td>{{ $venda->id_venda }}</td>
+                            <td>
+                                <ul>
+                                    @php
+                                        $produtos = $venda->produtos;
+                                    @endphp
+                                    @foreach ($produtos as $produto)
+                                        <li>
+                                            ID - {{ $produto['nome'] }} ------------- {{ $produto['quantidade'] }}x(R$
+                                            {{ $produto['preco'] }})
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </td>
+                            <td>{{ $venda->created_at->format('d/m/Y H:i') }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
     </div>
-</div>
