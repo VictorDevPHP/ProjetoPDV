@@ -5,6 +5,7 @@
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
 
     <div class="card-body">
+        @livewireScripts
         <table id="produtos" class="table table-bordered table-striped">
             <thead>
                 <tr>

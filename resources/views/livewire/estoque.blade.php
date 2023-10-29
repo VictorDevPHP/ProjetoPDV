@@ -10,6 +10,7 @@
 
 @livewire('components.cadastro-produto')
 <div class="card-body">
+    @livewireScripts
     <table id="produtos" class="table table-bordered table-striped">
         <thead>
             <tr>

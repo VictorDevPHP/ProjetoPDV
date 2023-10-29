@@ -1,3 +1,3 @@
 @extends('layouts.app')
-
+@livewireScripts()
 

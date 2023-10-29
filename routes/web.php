@@ -58,7 +58,7 @@ Route::middleware(['auth'])->group(function () {
     // Route ListaVenda
     Route::get('/livewire/lista-venda', [ListaVenda::class, 'render'])->name('lista-venda');
 
-     // Route ListaVenda
+    // Route ListaVenda
     Route::get('/livewire/produtos-vendidos', [ProdutosVendidos::class, 'render'])->name('produtos-vendidos');
 
     // Route CadastroCliente

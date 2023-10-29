@@ -16,5 +16,4 @@ class Clientes extends Component
             'clientes',
         ));
     }
-
 }
