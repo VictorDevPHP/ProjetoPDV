@@ -334,6 +334,18 @@ return [
         ],
 
         [
+            'text'    => 'Relatorios',
+            'icon'    => 'fas fa-file-invoice-dollar',
+            'submenu' => [
+                [
+                    'text' => 'Relatorio De Vendas',
+                    'icon'    => 'fas fa-dollar-sign',
+                    'url'  => '/livewire/relatorios/relatorios-venda',
+                ],
+            ],
+        ],
+
+        [
             'text'    => 'Listas',
             'icon'    => 'fas fa-poll',
             'submenu' => [

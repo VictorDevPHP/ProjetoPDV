@@ -3,6 +3,7 @@
 use App\Http\Livewire\Cadastro\CadastroFornecedor;
 use App\Http\Livewire\Listas\Fornecedor;
 use App\Http\Livewire\Pdv;
+use App\Http\Livewire\Relatorios\RelatoriosVenda;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Components\FormProduto;
 use App\Http\Livewire\Estoque;
@@ -85,6 +86,9 @@ Route::middleware(['auth'])->group(function () {
 
     // Route Lista Fornecedor
     Route::get('/livewire/listas/fornecedor', [Fornecedor::class, 'render'])->name('fornecedor-lista');
+
+    // Route Relatorios Venda
+    Route::get('/livewire/relatorios/relatorios-venda', [RelatoriosVenda::class, 'render'])->name('relatorios-venda');
 
 });
 

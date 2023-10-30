@@ -16,5 +16,4 @@ class Funcionarios extends Component
             'funcionarios'
         ));
     }
-
 }
