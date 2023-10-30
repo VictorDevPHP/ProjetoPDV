@@ -22,9 +22,7 @@ class AuthServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Gate::define('adm', function ($user) {
-            return $user->profile == 'adm'
-                        ? true
-                        : false;
+            return $user->profile == 'adm' ? true : false;
         });
 
         Gate::define('gerente', function ($user){
