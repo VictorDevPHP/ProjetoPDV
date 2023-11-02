@@ -17,6 +17,18 @@ class ReportVenda extends Component
     public $valorPer;
     public $totalGeral;
     public $totalGeralQuinze;
+    public $chartData = [
+        'labels' => [],
+        'datasets' => [
+            [
+                'label' => 'Vendas Mensais',
+                'data' => [],
+                'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
+                'borderColor' => 'rgba(75, 192, 192, 1)',
+                'borderWidth' => 1,
+            ]
+        ]
+    ];
     public function render()
     {
         $this->valor = $this->totalGeral;
@@ -40,6 +52,7 @@ class ReportVenda extends Component
     public function vendaQuinzeDias()
     {
         $this->vendas = Venda::whereDate('created_at', '>=', Carbon::now()->subDays(15))->get();
+        dd($this->vendas);
         $this->totalGeralQuinze = 0;
         foreach ($this->vendas as $venda) {
             $this->totalGeralQuinze += $venda->valor_total;

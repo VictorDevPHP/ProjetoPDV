@@ -4,39 +4,45 @@
     <link rel="stylesheet" href="{{ asset('vendor/adminlte/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('//cdn.datatables.net/1.13.6/css/jquery.dataTables.min.css') }}">
     <script src="//cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     @livewireScripts
-    <div class="col-md-3"> <!-- Botão na mesma largura que os cards -->
-        <button class="btn btn-dark btn-block" wire:click="vendaTrintaDias">Filtrar 30 dias</button>
-        <div class="small-box bg-info">
-            <div class="inner">
-                <h3>Ultimos 30 Dias</h3>
-                <p>Total R$ {{$valorTrinta}}</p>
+    <div class="row">
+        <div class="col-md-3"> <!-- Botão na mesma largura que os cards -->
+            <button class="btn btn-dark btn-block" wire:click="vendaTrintaDias">Filtrar 30 dias</button>
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Ultimos 30 Dias</h3>
+                    <p>Total R$ {{ $valorTrinta }}</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <a class="small-box-footer">
+                    Mais informações <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
-            <div class="icon">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-            <a class="small-box-footer">
-                Mais informações <i class="fas fa-arrow-circle-right"></i>
-            </a>
         </div>
-    </div>
-    <div class="col-md-3"> <!-- Coluna 2 ocupando metade da largura -->
-        <button class="btn btn-dark btn-block" wire:click="vendaQuinzeDias">Filtrar 15 dias</button>
-        <div class="small-box bg-info">
-            <div class="inner">
-                <h3>Ultimos 15 Dias</h3>
-                <p>Total R$ {{$valorQuinze}}</p>
+        <div class="col-md-3"> <!-- Coluna 2 ocupando metade da largura -->
+            <button class="btn btn-dark btn-block" wire:click="vendaQuinzeDias">Filtrar 15 dias</button>
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Ultimos 15 Dias</h3>
+                    <p>Total R$ {{ $valorQuinze }}</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <a class="small-box-footer">
+                    Mais informações <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
-            <div class="icon">
-                <i class="fas fa-shopping-cart"></i>
-            </div>
-            <a class="small-box-footer">
-                Mais informações <i class="fas fa-arrow-circle-right"></i>
-            </a>
         </div>
+        <canvas id="graph"
+            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 764px;"
+            width="764" height="250" class="chartjs-render-monitor"></canvas>
     </div>
     <div>
-        <input  class="" type="date" wire:model="data_inicio" />
+        <input class="" type="date" wire:model="data_inicio" />
         <input type="date" wire:model="data_fim" />
         <button wire:click="filtroPerVendas">Filtrar</button>
     </div>
@@ -79,4 +85,19 @@
             });
         </script>
     @endif
+    <script>
+        var ctx = document.getElementById('graph').getContext('2d');
+        var graph = new Chart(ctx, {
+            type: 'line',
+            data: @json($chartData),
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
+
 </div>
