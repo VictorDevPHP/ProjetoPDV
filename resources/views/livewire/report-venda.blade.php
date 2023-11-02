@@ -88,24 +88,21 @@
     <script>
         var ctx = document.getElementById('graph').getContext('2d');
         var labels;
-        var graph; // Variável para armazenar o gráfico
+        var graph;
 
         window.addEventListener('labels-updated', function(event) {
             labels = event.detail;
-            updateChart(); // Chama a função para criar ou atualizar o gráfico com as novas labels
+            updateChart();
         });
 
         function updateChart() {
-            // Destrua o gráfico existente se ele estiver definido
             if (graph) {
                 graph.destroy();
             }
-
-            // Crie um novo gráfico com as labels atualizadas
             graph = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: labels[0], // Usa as labels atualizadas
+                    labels: labels[0], 
                     datasets: [{
                         label: 'Vendas Mensais',
                         data: [12, 19, 3, 5, 2, 10, 4, 5, 19, 15, 11, 2, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 17, 16, 14, 18, 19, 10, 10],
