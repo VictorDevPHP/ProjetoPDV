@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\Models\Venda;
-use Livewire\Component;
 use Carbon\Carbon;
+use Livewire\Component;
 
 class ReportVenda extends Component
 {
@@ -17,18 +17,8 @@ class ReportVenda extends Component
     public $valorPer;
     public $totalGeral;
     public $totalGeralQuinze;
-    public $chartData = [
-        'labels' => [],
-        'datasets' => [
-            [
-                'label' => 'Vendas Mensais',
-                'data' => [],
-                'backgroundColor' => 'rgba(75, 192, 192, 0.2)',
-                'borderColor' => 'rgba(75, 192, 192, 1)',
-                'borderWidth' => 1,
-            ]
-        ]
-    ];
+    public $chartData;
+    public $labels;
     public function render()
     {
         $this->valor = $this->totalGeral;
@@ -39,26 +29,35 @@ class ReportVenda extends Component
     public function vendaTrintaDias()
     {
         $this->vendas = Venda::whereDate('created_at', '>=', Carbon::now()->subDays(30))->get();
-
         $this->totalGeral = 0;
         foreach ($this->vendas as $venda) {
             $this->totalGeral += $venda->valor_total;
         }
+        $this->labels = [];
+        for ($i = 1; $i <= 30; $i++) {
+            $this->labels[] = (string) $i;
+        }
         $this->valorTrinta = $this->totalGeral;
         $this->tabelaCarregada = true;
-    }
 
+        $this->dispatch('labels-updated', $this->labels);
+    }
 
     public function vendaQuinzeDias()
     {
         $this->vendas = Venda::whereDate('created_at', '>=', Carbon::now()->subDays(15))->get();
-        dd($this->vendas);
+        $this->labels = [];
+        for ($i = 1; $i <= 15; $i++) {
+            $this->labels[] = (string) $i;
+        }
         $this->totalGeralQuinze = 0;
         foreach ($this->vendas as $venda) {
             $this->totalGeralQuinze += $venda->valor_total;
         }
         $this->valorQuinze = $this->totalGeralQuinze;
         $this->tabelaCarregada = true;
+
+        $this->dispatch('labels-updated', $this->labels);
     }
     public function filtroPerVendas()
     {

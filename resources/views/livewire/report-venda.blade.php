@@ -37,14 +37,14 @@
                 </a>
             </div>
         </div>
-        <canvas id="graph"
-            style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 764px;"
-            width="764" height="250" class="chartjs-render-monitor"></canvas>
     </div>
+    <canvas id="graph"
+        style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 764px;"
+        width="764" height="250" class="chartjs-render-monitor"></canvas>
     <div>
         <input class="" type="date" wire:model="data_inicio" />
         <input type="date" wire:model="data_fim" />
-        <button wire:click="filtroPerVendas">Filtrar</button>
+        <button class="btn btn-dark btn-block col-md-2" wire:click="filtroPerVendas">Filtrar</button>
     </div>
     <div class="card-body">
         <table id="produtos" class="table table-bordered table-striped">
@@ -87,17 +87,45 @@
     @endif
     <script>
         var ctx = document.getElementById('graph').getContext('2d');
-        var graph = new Chart(ctx, {
-            type: 'line',
-            data: @json($chartData),
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        var labels;
+        var graph; // Variável para armazenar o gráfico
+
+        window.addEventListener('labels-updated', function(event) {
+            labels = event.detail;
+            updateChart(); // Chama a função para criar ou atualizar o gráfico com as novas labels
+        });
+
+        function updateChart() {
+            // Destrua o gráfico existente se ele estiver definido
+            if (graph) {
+                graph.destroy();
+            }
+
+            // Crie um novo gráfico com as labels atualizadas
+            graph = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: labels[0], // Usa as labels atualizadas
+                    datasets: [{
+                        label: 'Vendas Mensais',
+                        data: [12, 19, 3, 5, 2, 10, 4, 5, 19, 15, 11, 2, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 17, 16, 14, 18, 19, 10, 10],
+                        backgroundColor: 'gray',
+                        borderColor: 'rgba(75, 192, 192, 1)',
+                        borderWidth: 1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
+
+        // Chame a função inicialmente para criar o gráfico com as labels iniciais (se houver)
+        updateChart();
     </script>
 
 </div>
