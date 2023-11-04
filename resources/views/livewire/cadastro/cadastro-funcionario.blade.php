@@ -1,7 +1,8 @@
 <div>
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.5/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.5/dist/sweetalert2.min.js"></script>
     <div class="container mt-4">
         <h2><i class="fas fa-users"></i> Formulário de Funcionario </h2>
         <form method="POST">
@@ -50,6 +51,14 @@
             <div class="alert alert-success">
                 {{ session('sucesso') }}
             </div>
+            <script>
+                Swal.fire({
+                    title: 'Sucesso!',
+                    text: 'Usuario Atualizado Com Sucesso',
+                    icon: 'success',
+                    confirmButtonText: 'OK'
+                });
+            </script>
         @endif
 
     </div>

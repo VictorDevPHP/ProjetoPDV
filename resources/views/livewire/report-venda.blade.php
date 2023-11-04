@@ -37,6 +37,21 @@
                 </a>
             </div>
         </div>
+        <div class="col-md-3"> <!-- Coluna 2 ocupando metade da largura -->
+            <button class="btn btn-dark btn-block" wire:click="vendaCincoDias">Filtrar 5 dias</button>
+            <div class="small-box bg-info">
+                <div class="inner">
+                    <h3>Ultimos 5 Dias</h3>
+                    <p>Total R$ {{ $valorCinco }}</p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-shopping-cart"></i>
+                </div>
+                <a class="small-box-footer">
+                    Mais informações <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
     </div>
     <canvas id="graph"
         style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%; display: block; width: 764px;"
@@ -87,14 +102,10 @@
     @endif
     <script>
         var ctx = document.getElementById('graph').getContext('2d');
-        var labels;
-        var graph;
-
-        window.addEventListener('labels-updated', function(event) {
-            labels = event.detail;
-            updateChart();
-        });
-
+        var labels = [];
+        var coluna = [];
+        var graph = null;
+    
         function updateChart() {
             if (graph) {
                 graph.destroy();
@@ -102,10 +113,10 @@
             graph = new Chart(ctx, {
                 type: 'line',
                 data: {
-                    labels: labels[0], 
+                    labels: labels,
                     datasets: [{
                         label: 'Vendas Mensais',
-                        data: [12, 19, 3, 5, 2, 10, 4, 5, 19, 15, 11, 2, 13, 14, 15, 16, 17, 18, 19, 20, 19, 18, 17, 17, 16, 14, 18, 19, 10, 10],
+                        data: coluna,
                         backgroundColor: 'gray',
                         borderColor: 'rgba(75, 192, 192, 1)',
                         borderWidth: 1
@@ -120,9 +131,13 @@
                 }
             });
         }
-
-        // Chame a função inicialmente para criar o gráfico com as labels iniciais (se houver)
+        window.addEventListener('labels-updated', function(event) {
+            labels = event.detail[0];
+            coluna = event.detail[1];
+            updateChart();
+        });
         updateChart();
     </script>
+    
 
 </div>

@@ -18,7 +18,7 @@ class CadastroFuncionario extends Component
         $funcionario->save();
 
         session()->flash('sucesso', $funcionario->nome .' cadastrado com sucesso');
-        return redirect()->route('cadastro-cliente');
+        return redirect()->route('form-funcionario');
     }
 
     public function editarFuncionario($id){
