@@ -215,7 +215,7 @@
                             Swal.fire({
                                 position: 'top-end',
                                 icon: 'success',
-                                title: 'Your work has been saved',
+                                title: 'Venda Realizada com Sucesso',
                                 showConfirmButton: false,
                                 timer: 1500
                             })
