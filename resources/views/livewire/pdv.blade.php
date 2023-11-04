@@ -10,6 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.5/dist/sweetalert2.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10.16.5/dist/sweetalert2.min.js"></script>    
     <style>
         #carrinho {
             max-height: 300px;
@@ -210,7 +212,13 @@
                     },
                     success: function(response) {
                         if (response.success) {
-                            alert('Venda Realizada com sucesso');
+                            Swal.fire({
+                                position: 'top-end',
+                                icon: 'success',
+                                title: 'Your work has been saved',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
                             $('#carrinho').empty();
                             $('#total').text('R$0.00');
                             $('#modal-pagamento').modal('hide');

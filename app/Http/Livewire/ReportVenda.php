@@ -34,7 +34,7 @@ class ReportVenda extends Component
         $this->vendas = Venda::whereDate('created_at', '>=', Carbon::now()->subDays(30))->get();
 
         $this->vendasPorDia = [];
-        for ($i = 1; $i < 31; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $date = Carbon::now()->subDays($i)->format('d/m');
             $this->vendasPorDia[$date] = 0;
         }
@@ -51,7 +51,7 @@ class ReportVenda extends Component
         }
 
         $this->labels = [];
-        for ($i = 1; $i < 31; $i++) {
+        for ($i = 0; $i < 30; $i++) {
             $date = Carbon::now()->subDays($i);
             $this->labels[] = $date->format('d/m');
         }
@@ -68,7 +68,7 @@ class ReportVenda extends Component
         $this->vendas = Venda::whereDate('created_at', '>=', Carbon::now()->subDays(15))->get();
 
         $this->vendasPorDia = [];
-        for ($i = 0; $i < 16; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             $date = Carbon::now()->subDays($i)->format('d/m');
             $this->vendasPorDia[$date] = 0;
         }
@@ -90,7 +90,7 @@ class ReportVenda extends Component
             $this->totalGeralQuinze += $venda->valor_total;
         }
 
-        for ($i = 1; $i < 16; $i++) {
+        for ($i = 0; $i < 15; $i++) {
             $date = Carbon::now()->subDays($i);
             $this->labels[] = $date->format('d/m');
         }
@@ -106,7 +106,7 @@ class ReportVenda extends Component
         $this->vendas = Venda::whereDate('created_at', '>=', Carbon::now()->subDays(5))->get();
 
         $this->vendasPorDia = [];
-        for ($i = 1; $i < 6; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $date = Carbon::now()->subDays($i)->format('d/m');
             $this->vendasPorDia[$date] = 0;
         }
@@ -128,7 +128,7 @@ class ReportVenda extends Component
         }
 
         $this->labels = [];
-        for ($i = 1; $i < 6; $i++) {
+        for ($i = 0; $i < 5; $i++) {
             $date = Carbon::now()->subDays($i);
             $this->labels[] = $date->format('d/m');
         }
